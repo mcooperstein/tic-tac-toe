@@ -2,6 +2,10 @@
 function startGame() {
     //global variable document.turn
     document.turn = "X";
+    if (Math.random() < 0.5) {
+        document.turn = "O";
+    }
+    document.winner = null;
     setMessage(document.turn + " gets to start.");
 }
 //Notify Players whose turn it is
@@ -10,7 +14,9 @@ function setMessage(msg) {
 }
 //Determines whether "X" or "O" fills the square
 function nextMove(square) {
-    if (square.innerHTML == "") {
+    if (document.winner != null) {
+        setMessage(document.winner + " already won the game.");
+    } else if (square.innerHTML == "") {
         square.innerHTML = document.turn;
         switchTurn();
     } else {
@@ -21,6 +27,7 @@ function nextMove(square) {
 function switchTurn() {
     if (checkForWinner(document.turn)) {
         setMessage("Congratulations, " + document.turn + "! You won!");
+        document.winner = document.turn;
     } else if (document.turn == "X") {
         document.turn = "O";
         setMessage("It's " + document.turn + "'s turn!");
@@ -56,4 +63,8 @@ function checkRow(a, b, c, move) {
 
 function getBox(number) {
     return document.getElementById("s" + number).innerHTML;
+}
+
+function restart() {
+    document.location.reload();
 }
