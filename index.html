@@ -7,8 +7,26 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
-
+<body onload="startGame();">
+    <h1>Basic JavaScript Tic-Tac-Toe Game</h1>
+    <p id="message">Messages will go here:</p>
+    <table border="1">
+        <tr>
+            <td id="s1" class="square" onclick="nextMove(this);"></td>
+            <td id="s2" class="square" onclick="nextMove(this);"></td>
+            <td id="s3" class="square" onclick="nextMove(this);"></td>
+        </tr>
+        <tr>
+            <td id="s4" class="square" onclick="nextMove(this);"></td>
+            <td id="s5" class="square" onclick="nextMove(this);"></td>
+            <td id="s6" class="square" onclick="nextMove(this);"></td>
+        </tr>
+        <tr>
+            <td id="s7" class="square" onclick="nextMove(this);"></td>
+            <td id="s8" class="square" onclick="nextMove(this);"></td>
+            <td id="s9" class="square" onclick="nextMove(this);"></td>
+        </tr>
+    </table>
 
     <script src="app.js"></script>
 </body>
