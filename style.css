@@ -22,6 +22,12 @@ h3 {
 input {
     width: 100%;
     font-size: 20px;
+    border: 2px solid black;
+    margin-bottom: 5px;
+}
+
+#submit {
+    margin-bottom: 20px;
 }
 
 p {
