@@ -1,13 +1,15 @@
 //Start Game
-function startGame() {
-    //global variable document.turn
-    document.turn = "X";
+//function startGame() {
+//global variable document.turn
+/*document.turn = "X";
     if (Math.random() < 0.5) {
         document.turn = "O";
     }
     document.winner = null;
     setMessage(document.turn + " gets to start.");
-}
+}*/
+document.turn = "X";
+
 //Notify Players whose turn it is
 function setMessage(msg) {
     document.getElementById("message").innerHTML = msg;
@@ -67,3 +69,19 @@ function getBox(number) {
 function restart() {
     document.location.reload();
 }
+
+$(document).ready(function () {
+    $("#message").hide()
+
+    $("#submit").click(function () {
+        $("#message").show();
+        var player1 = $("#player1").val();
+        var player2 = $("#player2").val();
+
+        var pickPlayer = [player1, player2];
+        var random = pickPlayer[Math.floor(Math.random() * pickPlayer.length)];
+
+        $("#message").text(random + " gets to start as X.");
+
+    })
+});

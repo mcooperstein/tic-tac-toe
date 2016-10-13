@@ -8,6 +8,22 @@ h1 {
     color: red;
 }
 
+h3 {
+    text-align: center;
+    font-size: 26px;
+    color: red;
+}
+
+#top {
+    width: 30%;
+    margin: auto;
+}
+
+input {
+    width: 100%;
+    font-size: 20px;
+}
+
 p {
     text-align: center;
 }

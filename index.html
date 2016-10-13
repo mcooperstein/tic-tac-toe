@@ -7,8 +7,15 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body onload="startGame();">
+<body>
+    <!--<body onload="startGame();">-->
     <h1>Basic JavaScript Tic-Tac-Toe Game</h1>
+    <h3>Enter your names and then submit to see who gets to go first</h3>
+    <div id="top-container">
+        <input type="text" id="player1">
+        <input type="text" id="player2">
+        <button id="submit">Submit</button>
+    </div>
     <p id="message">Messages will go here:</p>
     <table border="1">
         <tr>
@@ -31,6 +38,7 @@
         <button onclick="restart();">Start Over</button>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="app.js"></script>
 </body>
 
