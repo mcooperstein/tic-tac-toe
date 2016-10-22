@@ -1,14 +1,13 @@
 //Start Game
 //function startGame() {
 //global variable document.turn
-/*document.turn = "X";
-    if (Math.random() < 0.5) {
-        document.turn = "O";
-    }
-    document.winner = null;
-    setMessage(document.turn + " gets to start.");
-}*/
 document.turn = "X";
+if (Math.random() < 0.5) {
+    document.turn = "O";
+}
+//document.winner = null;
+//setMessage(document.turn + " gets to start.");
+//document.turn = "X";
 
 //Notify Players whose turn it is
 function setMessage(msg) {
@@ -81,7 +80,8 @@ $(document).ready(function () {
         var pickPlayer = [player1, player2];
         var random = pickPlayer[Math.floor(Math.random() * pickPlayer.length)];
 
-        $("#message").text(random + " gets to start as X.");
-
+        $("#message").text(random + " gets to start as " + document.turn);
+        $("h3").hide();
+        $("#top-container").hide();
     })
 });
