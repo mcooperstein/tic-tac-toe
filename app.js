@@ -1,10 +1,12 @@
 //Start Game
 //function startGame() {
 //global variable document.turn
-document.turn = "X";
+var turn = "X";
 if (Math.random() < 0.5) {
-    document.turn = "O";
+    turn = "O";
 }
+var winner = null;
+var allMarkedSquares = [];
 //document.winner = null;
 //setMessage(document.turn + " gets to start.");
 //document.turn = "X";
@@ -15,10 +17,13 @@ function setMessage(msg) {
 }
 //Determines whether "X" or "O" fills the square
 function nextMove(square) {
-    if (document.winner != null) {
-        setMessage(document.winner + " already won the game.");
+    if (winner != null) {
+        setMessage(winner + " already won the game.");
+    } else if (winner == null && allMarkedSquares.length === 9) {
+        setMessage("The game ended in a tie. Why don't you play again?")
     } else if (square.innerHTML == "") {
-        square.innerHTML = document.turn;
+        square.innerHTML = turn;
+        allMarkedSquares.push(turn);
         switchTurn();
     } else {
         setMessage("That square is already taken!");
@@ -26,15 +31,18 @@ function nextMove(square) {
 }
 //Switch turns after each turn
 function switchTurn() {
-    if (checkForWinner(document.turn)) {
-        setMessage("Congratulations, " + document.turn + "! You won!");
-        document.winner = document.turn;
-    } else if (document.turn == "X") {
-        document.turn = "O";
-        setMessage("It's " + document.turn + "'s turn!");
+    if (checkForWinner(turn)) {
+        setMessage("Congratulations, " + turn + "! You won!");
+        winner = turn;
+    } else if (checkForTie()) {
+        setMessage("It's a tie. :/");
+        winner = null;
+    } else if (turn == "X") {
+        turn = "O";
+        setMessage("It's " + turn + "'s turn!");
     } else {
-        document.turn = "X";
-        setMessage("It's " + document.turn + "'s turn!");
+        turn = "X";
+        setMessage("It's " + turn + "'s turn!");
     }
 }
 
@@ -53,6 +61,15 @@ function checkForWinner(move) {
     return result;
 }
 
+function checkForTie() {
+    var result = false;
+    if (allMarkedSquares.length === 9 && winner != turn) {
+        result = true;
+    }
+    return result;
+}
+
+
 function checkRow(a, b, c, move) {
     var result = false;
     if (getBox(a) == move && getBox(b) == move && getBox(c) == move) {
@@ -70,17 +87,21 @@ function restart() {
 }
 
 $(document).ready(function () {
-    $("#message").hide()
+    $("#message").hide();
+    $("table").hide();
+    $("#reset").hide();
 
     $("#submit").click(function () {
         $("#message").show();
+        $("table").show();
+        $("#reset").show();
         var player1 = $("#player1").val();
         var player2 = $("#player2").val();
 
         var pickPlayer = [player1, player2];
         var random = pickPlayer[Math.floor(Math.random() * pickPlayer.length)];
 
-        $("#message").text(random + " gets to start as " + document.turn);
+        $("#message").text(random + " gets to start as " + turn);
         $("h3").hide();
         $("#top-container").hide();
     })
