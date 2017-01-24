@@ -34,6 +34,7 @@ function switchTurn() {
     if (checkForWinner(turn)) {
         setMessage("Congratulations, " + turn + "! You won!");
         winner = turn;
+        $("marquee").text(turn + " is the winner!!!")
     } else if (checkForTie()) {
         setMessage("It's a tie. :/");
         winner = null;
