@@ -1,10 +1,11 @@
 //Start Game
 //function startGame() {
 //global variable document.turn
-var turn = "X";
-if (Math.random() < 0.5) {
+//var turn = "X";
+/*if (Math.random() < 0.5) {
     turn = "O";
-}
+}*/
+var turn;
 var winner = null;
 var allMarkedSquares = [];
 //document.winner = null;
@@ -32,9 +33,15 @@ function nextMove(square) {
 //Switch turns after each turn
 function switchTurn() {
     if (checkForWinner(turn)) {
-        setMessage("Congratulations, " + turn + "! You won!");
+        setMessage("We have a winner...");
         winner = turn;
-        $("marquee").text(turn + " is the winner!!!")
+        var player1 = $("#player1").val();
+        var player2 = $("#player2").val();
+        if (turn == "X") {
+            $("marquee").text(player1 + " is the winner!!!")
+        } else if (turn == "O") {
+            $("marquee").text(player2 + " is the winner!!!")
+        }
     } else if (checkForTie()) {
         setMessage("It's a tie. :/");
         winner = null;
@@ -101,7 +108,11 @@ $(document).ready(function () {
 
         var pickPlayer = [player1, player2];
         var random = pickPlayer[Math.floor(Math.random() * pickPlayer.length)];
-
+        if (random == player1) {
+            turn = "X";
+        } else {
+            turn = "O";
+        }
         $("#message").text(random + " gets to start as " + turn);
         $("h3").hide();
         $("#top-container").hide();
